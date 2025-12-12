@@ -6,19 +6,53 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-<!-- Tell computer to return one of the randomly string values: 'rock', 'paper', 'scissors'-->
 
     <script>
+        // SCORES
+        let humanScore = 0
+        let computerScore = 0
+
+        // COMPUTER CHOICE LOGIC
         let computerChoice;
         let randomChoice = Math.floor(Math.random() * 3);
+
+        function playRound(humanChoice, computerChoice) {
+            if (humanChoice === computerChoice) {
+                console.log("It's a tie");
+            } else if (humanChoice === "rock" && computerChoice === "scissors") {
+                console.log("You win this round! Rock beats scissors");
+                humanScore++;
+            } else if (humanChoice === "paper" && computerChoice === "rock") {
+                console.log("You win this round! Paper beats Rock");
+                humanScore++;
+            } else if (humanChoice === "scissors" && computerChoice === "paper") {
+                console.log("You win this round! Scissors beats paper");
+                humanScore++;    
+            } else {
+                console.log("You lose this Round!")
+                computerScore++;
+            }
+        }
+                
+        
         
         if (randomChoice === 0) {
-            computerChoice = "rock";        
-    
-
-
+            computerChoice = "rock";
+        } else if (randomChoice === 1) {
+            computerChoice = "paper";
+        } else if (randomChoice === 2) {
+            computerChoice = "scissors";
         }
-        
+        console.log("Computer choice is: " + computerChoice); // Computer choice is displayed in the console 
+
+        // HUMAN CHOICE
+        let getHumanChoice = prompt("Enter one of the following: rock, paper, scissors"); // Prompt user to enter their choice 
+        getHumanChoice.toLowerCase();
+
+        console.log("Human choice is: " + getHumanChoice);
+        playRound(getHumanChoice, computerChoice)
+
     </script>
 
+    </body>
 </html>
