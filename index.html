@@ -43,18 +43,10 @@
                 return "rock";
             } else if (randomChoice === 1) {
                 return "paper";
-            } else {
-                return "scissors";
-            }
+            } else (randomChoice === 2) 
+                return "scissors"; 
         }
 
-        if (randomChoice === 0) {
-            computerChoice = "rock";
-        } else if (randomChoice === 1) {
-            computerChoice = "paper";
-        } else if (randomChoice === 2) {
-            computerChoice = "scissors";
-        }
         console.log("Computer choice is: " + computerChoice); // Computer choice is displayed in the console 
 
         // HUMAN CHOICE
@@ -62,9 +54,9 @@
             let choice = prompt("Enter one of the following: rock, paper, scissors"); // Prompt user to enter their choice 
             return choice.toLowerCase()
         }
-
+        // FOR GAME TO BE REPEATED 5 TIMES 
         for (let i = 0; i < 5; i++) {
-            console.log("--- Round " +(i + 1) + " ---");
+            console.log("--- Round " + (i + 1) + " ---");
             let humanChoice = getHumanChoice();
             let computerChoice = getComputerChoice();
             console.log("You chose: " + humanChoice);
@@ -76,7 +68,7 @@
         console.log("Computer Score = " + computerScore) 
         }
 
-    playGame()
+        playGame()
 
     </script>
 
