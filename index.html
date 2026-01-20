@@ -6,41 +6,27 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-        <button id ="humanBtn"></button>
-        <button id ="startBtn">Start Game!</button>
-        <button id ="computerBtn"></button>
+        <button id ="rockBtn">Choose Rock!</button>
+        <button id ="paperBtn">Choose Paper!</button>
+        <button id ="scissorsBtn">Choose Scissors!</button>
         <div id="result"></div>
+        <div id="scoreboard"></div>
+        <div id="computerOutput"></div>
     <script>
-
-        function playGame() {
-
-        // SCORES
         let humanScore = 0
         let computerScore = 0
 
-        // COMPUTER CHOICE LOGIC
-        let computerChoice;
-        let randomChoice = Math.floor(Math.random() * 3);
+        document.getElementById("rockBtn").addEventListener("click", function() {
+            playRound("rock", getComputerChoice());
+        });
+        document.getElementById("paperBtn").addEventListener("click", function() {
+            playRound("paper", getComputerChoice());
+        });
+        document.getElementById("scissorsBtn").addEventListener("click", function() {
+            playRound("scissors", getComputerChoice());
+        });
 
-        function playRound(humanChoice, computerChoice) {
-            if (humanChoice === computerChoice) {
-                console.log("It's a tie");
-            } else if (humanChoice === "rock" && computerChoice === "scissors") {
-                console.log("You won this round! Rock beats scissors");
-                humanScore++;
-            } else if (humanChoice === "paper" && computerChoice === "rock") {
-                console.log("You won this round! Paper beats Rock");
-                humanScore++;
-            } else if (humanChoice === "scissors" && computerChoice === "paper") {
-                console.log("You won this round! Scissors beats paper");
-                humanScore++;    
-            } else {
-                console.log("You lost this Round!")
-                computerScore++;
-            }
-        }
-        
-        function getComputerChoice() {
+         function getComputerChoice() {
             let randomChoice = Math.floor(Math.random() * 3);
             if (randomChoice === 0) {
                 return "rock";
@@ -50,28 +36,27 @@
                 return "scissors"; 
         }
 
-        console.log("Computer choice is: " + computerChoice); // Computer choice is displayed in the console 
-
-        // HUMAN CHOICE
-        function getHumanChoice() {
-            let choice = prompt("Enter one of the following: rock, paper, scissors"); // Prompt user to enter their choice 
-            return choice.toLowerCase()
+        function playRound(humanChoice, computerChoice) {
+            if (humanChoice === computerChoice) {
+                document.getElementById("result").textContent = "It's a tie!";
+            } else if (humanChoice === "rock" && computerChoice === "scissors") {
+                document.getElementById("result").textContent = "You won this round! Rock beats scissors";
+                humanScore++;
+            } else if (humanChoice === "paper" && computerChoice === "rock") {
+                document.getElementById("result").textContent = "You won this round! Paper beats Rock";
+                humanScore++;
+            } else if (humanChoice === "scissors" && computerChoice === "paper") {
+                document.getElementById("result").textContent = "You won this round! Scissors beats paper";
+                humanScore++;    
+            } else {
+                document.getElementById("result").textContent = "You lost this Round!";
+                computerScore++;
+            }
+            document.getElementById("computerOutput").textContent = "Computer chose: " + computerChoice;
+            document.getElementById("scoreboard").textContent = "Human Score = " + humanScore + " | Computer Score = " + computerScore;
         }
-        // FOR GAME TO BE REPEATED 5 TIMES 
-        for (let i = 0; i < 5; i++) {
-            console.log("--- Round " + (i + 1) + " ---");
-            let humanChoice = getHumanChoice();
-            let computerChoice = getComputerChoice();
-            console.log("You chose: " + humanChoice);
-            console.log("Computer chose: " + computerChoice);
-            playRound(humanChoice, computerChoice)
-        }
 
-        console.log("Human Score = " + humanScore);
-        console.log("Computer Score = " + computerScore) 
-        }
-
-        playGame()
+    
 
     </script>
 
