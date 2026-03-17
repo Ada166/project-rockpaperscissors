@@ -11,6 +11,7 @@
         <button id ="rockBtn">Choose Rock!</button>
         <button id ="paperBtn">Choose Paper!</button>
         <button id ="scissorsBtn">Choose Scissors!</button>
+        <button id="resetBtn" onclick="resetScore()">Reset Score</button>
     </div>
         <div id="result"></div>
         <div id="scoreboard"></div>
@@ -18,6 +19,14 @@
     <script>
         let humanScore = 0
         let computerScore = 0
+
+        document.getElementById("resetBtn").addEventListener("click", function() {
+            humanScore = 0;
+            computerScore = 0;
+            document.getElementById("scoreboard").textContent = "Human Score = " + humanScore + " | Computer Score = " + computerScore;
+            document.getElementById("result").textContent = "";
+            document.getElementById("computerOutput").textContent = "";
+        })
 
         document.getElementById("rockBtn").addEventListener("click", function() {
             playRound("rock", getComputerChoice());
@@ -58,8 +67,6 @@
             document.getElementById("computerOutput").textContent = "Computer chose: " + computerChoice;
             document.getElementById("scoreboard").textContent = "Human Score = " + humanScore + " | Computer Score = " + computerScore;
         }
-
-    
 
     </script>
 
